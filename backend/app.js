@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require("dotenv");
+dotenv.config();
 
 const app = express();
 
-mongoose.connect('mongodb+srv://SallyAK:queenharley@cluster0.lgef0.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect(process.env.DATABASE_URL,
 
     {
         useNewUrlParser: true,

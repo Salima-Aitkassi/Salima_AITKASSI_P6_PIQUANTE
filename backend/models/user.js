@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { stringify } = require('querystring');
 
 const userSchema = mongoose.Schema({
-    email: { type: string, required: true },
+    email: { type: string, required: true, unique: true },
     password: { type: string, required: true }
 
 })
