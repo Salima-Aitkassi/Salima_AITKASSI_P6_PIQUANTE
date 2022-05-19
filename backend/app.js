@@ -5,6 +5,8 @@ dotenv.config();
 
 const app = express();
 
+// Connexion BDD MongoDB
+
 mongoose.connect(process.env.DATABASE_URL,
 
     {
@@ -12,10 +14,13 @@ mongoose.connect(process.env.DATABASE_URL,
         useUnifiedTopology: true
     })
     .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée !'));
+    .catch((error) => console.log(error, 'Connexion à MongoDB échouée !'));
 
 app.use((req, res) => {
     res.json({ message: 'Votre requête a bien été reçue !' });
 });
+
+
+
 
 module.exports = app;

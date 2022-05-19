@@ -1,7 +1,7 @@
 
-const express = require("express");
+const express = require("./frontend/node_modules/@types/express");
 const app = express();
-const dotenv = require("dotenv");
+const dotenv = require("./frontend/node_modules/dotenv/lib/main");
 dotenv.config();
 
 const MY_PORT = process.env.PORT;

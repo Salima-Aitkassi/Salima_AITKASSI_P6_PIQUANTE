@@ -1,5 +1,7 @@
+// Modele de données pour profil utilisateur 
+
 const mongoose = require('mongoose');
-const { type } = require('os');
+
 
 const sauceSchema = mongoose.Schema({
     userId: { type: String, required: true },
@@ -11,8 +13,8 @@ const sauceSchema = mongoose.Schema({
     heat: { type: Number, required: true },
     likes: { type: Number, required: true },
     dislikes: { type: Number, required: true },
-    usersLiked: [{ type: String, required: true }],
-    usersDisliked: [{ type: String, required: true }],
+    usersLiked: { type: Array, required: true },
+    usersDisliked: { type: Array, required: true },
 })
 
 module.exports = mongoose.model('sauce', sauceSchema);
