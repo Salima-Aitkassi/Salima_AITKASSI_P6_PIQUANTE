@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
-var userRoutes = require('./routes/user');
+const userRoutes = require('./routes/user');
+const path = require('path');
 //var sauceRoutes = require('./routes/sauce')
 
 // Connexion BDD MongoDB
@@ -17,6 +18,8 @@ mongoose.connect(process.env.DATABASE_URL,
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch((error) => console.log(error, 'Connexion à MongoDB échouée !'));
 
+/*Middleware Header pour contourner les erreurs en débloquant certains systèmes 
+de sécurité CORS, afin que tout le monde puisse faire des requetes depuis son navigateur */
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -38,6 +41,7 @@ app.use((req, res, next) => {
 
 app.use('/api/auth', userRoutes);
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 
 

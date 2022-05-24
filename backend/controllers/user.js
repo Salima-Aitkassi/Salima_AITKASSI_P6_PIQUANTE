@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const user = require('../models/user');
 const jwt = require('jsonwebtoken');
+const validator = require('email-validator');
 
 
 // Fonction d'inscription pour enregistrer utilisateur dans la BDD :
@@ -44,7 +45,7 @@ exports.login = (req, res, next) => {
                         userId: user._id,
                         token: jwt.sign(
                             { userId: user._id },
-                            'RANDOM_TOKEN_SECRET',
+                            process.env.JWT,
                             { expiresIn: '24h' }
                         )
                     });
