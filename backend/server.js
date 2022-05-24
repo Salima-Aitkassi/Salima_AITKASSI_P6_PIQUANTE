@@ -45,4 +45,9 @@ server.on('listening', () => {
     console.log('Listening on ' + bind);
 });
 
-server.listen(port);
+app.get('/', (req, res) => {
+    res.json({message : 'Bienvenue dans mon application !'})
+})
+server.listen(port, () => {
+    console.log(`Server is running on port ${port}.`);
+});
