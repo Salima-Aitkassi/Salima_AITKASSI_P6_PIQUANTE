@@ -19,7 +19,7 @@ mongoose.connect(process.env.DATABASE_URL,
     .catch((error) => console.log(error, 'Connexion à MongoDB échouée !'));
 
 /*Middleware Header pour contourner les erreurs en débloquant certains systèmes 
-de sécurité CORS, afin que tout le monde puisse faire des requetes depuis son navigateur */
+de sécurité CORS */
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -34,13 +34,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
-    res.json({ message: 'Votre requête a bien été reçue !' });
-    next();
-})
-
-app.use('/api/auth', userRoutes);
 app.use(express.json());
+app.use('/api/auth', userRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 
