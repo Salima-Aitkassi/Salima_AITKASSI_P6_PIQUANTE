@@ -20,7 +20,10 @@ router.delete("/:id", auth, sauceCtrl.deleteSauce);
 router.post("/:id/like", auth, sauceCtrl.likeSauce);
 
 module.exports = router;*/
+router.get('/', function (req, res) {
+    res.send('route sauce')
 
+});
 // Création des différentes ROUTES de l'API en leurs précisant, dans l'ordre, leurs middlewares et controllers
 
 // Route qui permet de créer "une sauce"
