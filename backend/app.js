@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
+const helmet = require('helmet');
 const userRoutes = require('./routes/user');
+const sauceRoutes = require('./routes/sauce');
 const path = require('path');
-//var sauceRoutes = require('./routes/sauce')
+
 
 // Connexion BDD MongoDB
 
@@ -35,14 +37,10 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use(helmet());
 app.use('/api/auth', userRoutes);
+app.use('/api/auth', sauceRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
-
-
-
-
-
-
 
 
 module.exports = app;
