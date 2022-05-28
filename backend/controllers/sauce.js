@@ -31,7 +31,7 @@ exports.createSauce = (req, res, next) => {
         .catch(error => res.status(400).json({
             error
         }));
-    
+
     //.catch(error => {
     //res.writeHead( 400, '{"message":"Format des champs du formulaire sauce ne validant pas le middleware sauceValidation"}', {'content-type' : 'application/json'});
     //res.end('Format des champs du formulaire invalide');
