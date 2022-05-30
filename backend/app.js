@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
 const path = require('path');
+const bodyparser = require('body-parser');
 
 
 // Connexion BDD MongoDB
@@ -35,11 +36,11 @@ app.use((req, res, next) => {
     );
     next();
 });
-
+app.use(bodyparser.json());
 app.use(express.json());
 app.use(helmet());
 app.use('/api/auth', userRoutes);
-app.use('/api/auth', sauceRoutes);
+app.use('/api/sauces', sauceRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 

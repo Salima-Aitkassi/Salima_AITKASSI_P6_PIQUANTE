@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
   errorMsg!: string;
 
   constructor(private formBuilder: FormBuilder,
-              private auth: AuthService,
-              private router: Router) { }
+    private auth: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

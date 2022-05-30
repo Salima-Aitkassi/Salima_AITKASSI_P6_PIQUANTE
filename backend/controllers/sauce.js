@@ -127,13 +127,14 @@ exports.getOneSauce = (req, res, next) => {
 // Permet de récuperer toutes les sauces de la base MongoDB
 
 exports.getAllSauce = (req, res, next) => {
+
     // On utilise la méthode find pour obtenir la liste complète des sauces trouvées dans la base, l'array de toutes les sauves de la base de données
     Sauce.find()
         // Si OK on retourne un tableau de toutes les données
         .then(sauces => res.status(200).json(sauces))
         // Si erreur on retourne un message d'erreur
         .catch(error => res.status(400).json({
-            error
+            error: error
         }));
 };
 

@@ -7,23 +7,9 @@ const multer = require('../middleware/multer-config');
 
 const saucesCtrl = require('../controllers/sauce');
 
-/*/ Implémentation du CRUD pour les sauces :
+/*/ Implémentation du CRUD pour les sauces :*/
 
-router.get("/", auth, sauceCtrl.getAllSauces);
-router.post("/", auth, multer, sauceCtrl.createSauce);
-router.get("/:id", auth, sauceCtrl.getOneSauce);
-router.put("/:id", auth, multer, sauceCtrl.modifySauce);
-router.delete("/:id", auth, sauceCtrl.deleteSauce);
 
-// route pour les likes des utilisateurs :
-
-router.post("/:id/like", auth, sauceCtrl.likeSauce);
-
-module.exports = router;*/
-router.get('/', function (req, res) {
-    res.send('route sauce')
-
-});
 // Création des différentes ROUTES de l'API en leurs précisant, dans l'ordre, leurs middlewares et controllers
 
 // Route qui permet de créer "une sauce"
