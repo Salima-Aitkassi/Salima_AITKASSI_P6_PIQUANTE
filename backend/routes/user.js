@@ -1,5 +1,3 @@
-// Enregistrement du router dans l'application 
-
 const express = require('express');
 const router = express.Router();
 
@@ -11,6 +9,5 @@ const passwordValidator = require('../middleware/password');
 router.post('/signup', passwordValidator, userCtrl.signup);
 router.post('/login', userCtrl.login);
 
-//router.get('/:id', userCtrl.getUser);
 module.exports = router;
 
