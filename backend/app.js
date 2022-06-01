@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
-//const helmet = require('helmet');
+const helmet = require('helmet');
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
 const path = require('path');
@@ -24,12 +24,13 @@ mongoose.connect(process.env.DATABASE_URL,
 /*Middleware Header pour contourner les erreurs en débloquant certains systèmes 
 de sécurité CORS */
 
+app.use(helmet());
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
         "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-    );
+        "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization");
+    res.setHeader('Cross-Origin-Resource-Policy', 'same-site');
     res.setHeader(
         "Access-Control-Allow-Methods",
         "GET, POST, PUT, DELETE, PATCH, OPTIONS"
@@ -38,9 +39,7 @@ app.use((req, res, next) => {
 });
 
 
-
 app.use(express.json());
-//app.use(helmet());
 app.use('/api/auth', userRoutes);
 app.use('/api/sauces', sauceRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
