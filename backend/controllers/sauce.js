@@ -1,5 +1,6 @@
 const Sauce = require('../models/sauce');
 const fs = require('fs');
+const { error } = require('console');
 
 
 // Création de la sauce : 
@@ -34,6 +35,17 @@ exports.createSauce = (req, res, next) => {
 // Modifier la sauce : 
 
 exports.modifySauce = (req, res, next) => {
+    const userId = req.auth.userId
+    Sauce.findOne({
+        _id: req.params.id
+    })
+
+        .then((sauce) => {
+            if (userId !== sauce) {
+                return res.status(401).json({ error: "Vous n'êtes pas autorisé à effectuer de modification , veuillez vous connecter sur votre espace personnel " });
+            }
+        })
+
     let sauceObject = {};
     req.file ? (
 
@@ -75,6 +87,20 @@ exports.modifySauce = (req, res, next) => {
 // Supprimer la sauce :
 
 exports.deleteSauce = (req, res, next) => {
+
+    const userId = req.auth.userId
+    Sauce.findOne({
+        _id: req.params.id
+    })
+
+        .then((sauce) => {
+            if (userId !== sauce) {
+                return res.status(401).json({ error: "Vous n'êtes pas autorisé à effectuer de modification , veuillez vous connecter sur votre espace personnel " });
+                console.log(error)
+            }
+        })
+
+
 
     Sauce.findOne({
         _id: req.params.id
