@@ -41,7 +41,7 @@ exports.modifySauce = (req, res, next) => {
     })
 
         .then((sauce) => {
-            if (userId !== sauce) {
+            if (userId !== sauce.userId) {
                 return res.status(401).json({ error: "Vous n'êtes pas autorisé à effectuer de modification , veuillez vous connecter sur votre espace personnel " });
             }
         })
@@ -94,9 +94,9 @@ exports.deleteSauce = (req, res, next) => {
     })
 
         .then((sauce) => {
-            if (userId !== sauce) {
-                return res.status(401).json({ error: "Vous n'êtes pas autorisé à effectuer de modification , veuillez vous connecter sur votre espace personnel " });
-                console.log(error)
+            if (userId !== sauce.userId) {
+                return res.status(401).json({ error: "Vous n'êtes pas autorisé à effectuer de suppression , veuillez vous connecter sur votre espace personnel " });
+
             }
         })
 
